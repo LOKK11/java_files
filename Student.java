@@ -1,6 +1,9 @@
+import java.util.Random;
+
 public class Student {
     
     //Attributes 
+    private Random rand = new Random();
     private final int currentYear = 2023; 
     private String firstName = ConstantValues.NO_NAME;
     private String lastName = ConstantValues.NO_NAME;
@@ -12,8 +15,11 @@ public class Student {
     private int startYear = currentYear;
     private int graduationYear;
     private String birthDate = ConstantValues.NO_BIRTHDATE;
+    //Attribute status is the string for toString that is defined by whether
+    //the student has graduated or not.
     private String status;
 
+    //missingBachelor and missingMaster are the strings required for toString-method
     private String missingBachelor = 
     "Missing bachelor credits " + ConstantValues.BACHELOR_CREDITS +
     " (" + bachelorCredits + "/" + ConstantValues.BACHELOR_CREDITS + ")"
@@ -72,6 +78,8 @@ public class Student {
     }
 
     public void setBachelorCredits(final double bachelorCredits) {
+        //This method sets student's bachelor credits and changes the
+        //missingBachelor attribute's value based on how many credits is given.
         if (bachelorCredits >= ConstantValues.MIN_CREDIT && bachelorCredits <= ConstantValues.MAX_CREDITS) {
             this.bachelorCredits = bachelorCredits; 
             if (bachelorCredits >= ConstantValues.BACHELOR_CREDITS) {
@@ -93,6 +101,8 @@ public class Student {
     }
 
     public void setMasterCredits(final double masterCredits) {
+        //This method sets student's master credits and changes the
+        //missingMaster attribute's value based on how many credits is given.
         if (masterCredits >= ConstantValues.MIN_CREDIT && masterCredits <= ConstantValues.MAX_CREDITS) {
             this.masterCredits = masterCredits;
             if (masterCredits >= ConstantValues.MASTER_CREDITS) {
@@ -157,6 +167,8 @@ public class Student {
     }
 
     private boolean hasGraduated() {
+        //This method checks whether the student has graduated or not and
+        //also changes the students status String based on that.
         if (graduationYear == 0) {
             status = "The student has not graduated, yet";
             return false;
@@ -183,7 +195,7 @@ public class Student {
     }
     
     private int getRandomId() {
-        int randId = (int)Math.floor(Math.random() *(ConstantValues.MAX_ID - ConstantValues.MIN_ID + 1) + ConstantValues.MIN_ID);
+        int randId = rand.nextInt(ConstantValues.MAX_ID) + 1;
         return randId;
     }
 

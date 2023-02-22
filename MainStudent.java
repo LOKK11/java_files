@@ -2,7 +2,8 @@ public class MainStudent {
     public static void main(String[] args) {
         Student student1 = new Student();
         Student student2 = new Student("Mouse", "Mickey");
-        Student student3 = new Student("Mouse", "Mickey");
+        Student student3 = new Student("Mouse", "Minnie");
+        Student student4 = new Student();
         student1.setLastName("Duck");
         student1.setFirstName("Donald");
         student1.setBachelorCredits(120);
@@ -11,7 +12,7 @@ public class MainStudent {
         student1.setTitleOfBachelorThesis("Bachelor thesis title");
         student1.setStartYear(2001);
         student1.setGraduationYear(2020);
-        student2.setPersonId("221199-123K");
+        student2.setPersonId("170101A981N");
         student2.setTitleOfBachelorThesis("A new exciting purpose of life");
         student2.setBachelorCredits(65);
         student2.setMasterCredits(22);
@@ -28,6 +29,8 @@ public class MainStudent {
         System.out.println(student2.toString());
         System.out.println();
         System.out.println(student3.toString());
+        System.out.println();
+        System.out.println(student4.toString());
         System.out.println();
 
         System.out.println(student1.setPersonId("This is a string"));
