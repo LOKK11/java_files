@@ -1,3 +1,5 @@
+package dev.m3s.programming2.homework1;
+
 public class ConstantValues {
     public static final String NO_NAME = "No name";
     public static final String NO_TITLE= "No title";

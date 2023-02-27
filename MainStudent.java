@@ -1,14 +1,14 @@
 public class MainStudent {
     public static void main(String[] args) {
-        Student student1 = new Student();
-        Student student2 = new Student("Mouse", "Mickey");
+        Student student2 = new Student(null, null);
         Student student3 = new Student("Mouse", "Minnie");
         Student student4 = new Student();
+        Student student1 = new Student();
         student1.setLastName("Duck");
         student1.setFirstName("Donald");
         student1.setBachelorCredits(120);
         student1.setMasterCredits(180);
-        student1.setTitleOfMastersThesis("Masters thesis title");
+        student1.setTitleOfMasterThesis("Masters thesis title");
         student1.setTitleOfBachelorThesis("Bachelor thesis title");
         student1.setStartYear(2001);
         student1.setGraduationYear(2020);
@@ -19,8 +19,8 @@ public class MainStudent {
         student3.setPersonId("111111-3334");
         student3.setBachelorCredits(215);
         student3.setMasterCredits(120);
-        student3.setTitleOfMastersThesis("Christmas - The most wonderful time of the year");
-        student3.setTitleOfBachelorThesis("Dreaming of a white Christmas");
+        student3.setTitleOfMasterThesis("Christmas - The most wonderful time of the year");
+        student3.setTitleOfBachelorThesis(null);
         student3.setStartYear(2018);
         student3.setGraduationYear(2022);
 

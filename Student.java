@@ -1,3 +1,5 @@
+package dev.m3s.programming2.homework1;
+
 import java.util.Random;
 
 public class Student {
@@ -37,8 +39,10 @@ public class Student {
     }
 
     public Student(String lname, String fname) {
-        firstName = fname;
-        lastName = lname;
+        if (lname != null && fname != null) {
+            firstName = fname;
+            lastName = lname;
+        }
         this.id = getRandomId();
     }
 
@@ -60,7 +64,9 @@ public class Student {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;   
+        if (lastName != null) {
+            this.lastName = lastName;
+        }
     }
 
     public int getId() {
@@ -119,11 +125,11 @@ public class Student {
         }
     }
 
-    public String getTitleOfMastersThesis() {
+    public String getTitleOfMasterThesis() {
         return titleOfMastersThesis;
     }
 
-    public void setTitleOfMastersThesis(String title) {
+    public void setTitleOfMasterThesis(String title) {
         if (title != null) {
             titleOfMastersThesis = title;
         }
@@ -154,15 +160,15 @@ public class Student {
     }
 
     public String setGraduationYear(final int graduationYear) {
-        if (graduationYear <= currentYear && graduationYear >= startYear) {
-            if (canGraduate()) {
+        if (canGraduate()) {
+            if (graduationYear <= currentYear && graduationYear >= startYear) {
                 this.graduationYear = graduationYear;
                 return "Ok";
             } else {
-                return "Check the required studies";
+                return "Check graduation year";
             }
         } else {
-            return "Check graduation year";
+            return "Check the required studies";
         }
     }
 
@@ -180,7 +186,11 @@ public class Student {
     
     private boolean canGraduate() {
         if (bachelorCredits >= ConstantValues.BACHELOR_CREDITS && masterCredits >= ConstantValues.MASTER_CREDITS) {
-            return true;
+            if (titleOfBachelorThesis != ConstantValues.NO_TITLE && titleOfMastersThesis != ConstantValues.NO_TITLE) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
