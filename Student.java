@@ -1,12 +1,11 @@
-package dev.m3s.programming2.homework1;
+//package dev.m3s.programming2.homework2;
 
 import java.util.Random;
 
 public class Student {
     
     //Attributes 
-    private Random rand = new Random();
-    private final int currentYear = 2023; 
+    private Random rand = new Random(); 
     private String firstName = ConstantValues.NO_NAME;
     private String lastName = ConstantValues.NO_NAME;
     private int id;
@@ -14,7 +13,7 @@ public class Student {
     private double masterCredits = ConstantValues.MIN_CREDIT;
     private String titleOfMastersThesis = ConstantValues.NO_TITLE;
     private String titleOfBachelorThesis = ConstantValues.NO_TITLE;
-    private int startYear = currentYear;
+    private int startYear = ConstantValues.CURRENT_YEAR;
     private int graduationYear;
     private String birthDate = ConstantValues.NO_BIRTHDATE;
     //Attribute status is the string for toString that is defined by whether
@@ -150,7 +149,7 @@ public class Student {
     }
 
     public void setStartYear(final int startYear) {
-        if (startYear <= currentYear && startYear > 2000) {
+        if (startYear <= ConstantValues.CURRENT_YEAR && startYear > 2000) {
             this.startYear = startYear;
         }
     }
@@ -161,7 +160,7 @@ public class Student {
 
     public String setGraduationYear(final int graduationYear) {
         if (canGraduate()) {
-            if (graduationYear <= currentYear && graduationYear >= startYear) {
+            if (graduationYear <= ConstantValues.CURRENT_YEAR && graduationYear >= startYear) {
                 this.graduationYear = graduationYear;
                 return "Ok";
             } else {
@@ -200,7 +199,7 @@ public class Student {
         if (hasGraduated()) {
             return graduationYear - startYear; 
         } else { 
-            return currentYear - startYear;
+            return ConstantValues.CURRENT_YEAR - startYear;
         }
     }
     

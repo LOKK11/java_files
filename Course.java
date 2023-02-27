@@ -13,15 +13,20 @@ public class Course {
     public Course() {}
 
     public Course(
-    String name, 
-    final int code, 
-    Character courseBase, 
-    final int type, 
-    final int period, 
-    final double credits, 
-    boolean numericGrade
+        String name, 
+        final int code, 
+        Character courseBase, 
+        final int type, 
+        final int period, 
+        final double credits, 
+        boolean numericGrade
     ) {
-
+        setName(name);
+        setCourseCode(code, courseBase);
+        setCourseType(type);
+        setPeriod(period);
+        setCredits(credits);
+        setNumericGrade(numericGrade);
     }
 
     public Course(Course course) {
@@ -41,7 +46,7 @@ public class Course {
     }
 
     public String getCourseTypeString() {
-        if (courseType == ConstantValues2.MANDATORY) {
+        if (courseType == ConstantValues.MANDATORY) {
             return "Mandatory";
         } else {
             return "Optional";
@@ -53,7 +58,7 @@ public class Course {
     }
 
     public void setCourseType(final int type) {
-        if (type == ConstantValues2.OPTIONAL || type == ConstantValues2.MANDATORY) {
+        if (type == ConstantValues.OPTIONAL || type == ConstantValues.MANDATORY) {
             courseType = type;
         }
     }
@@ -91,9 +96,33 @@ public class Course {
     }
 
     public void setPeriod(final int period) {
-        if (period >= ConstantValues2.MIN_PERIOD && period <= ConstantValues2.MAX_PERIOD) {
+        if (period >= ConstantValues.MIN_PERIOD && period <= ConstantValues.MAX_PERIOD) {
             this.period = period;
         }
+    }
 
+    public double getCredits() {
+        return credits;
+    }
+
+    private void setCredits(final double credits) {
+        if (credits > ConstantValues.MIN_CREDIT && credits <= ConstantValues.MAX_COURSE_CREDIT) {
+            this.credits = credits;
+        }
+    }
+
+    public boolean isNumericGrade() {
+        return numericGrade;
+    }
+
+    public void setNumericGrade(boolean numericGrade) {
+        this.numericGrade = numericGrade;
+    }
+
+    public String toString() {
+        return
+        "[" + courseCode + " ( " + credits + " cr), \"" + name +
+        "\". " + getCourseTypeString() + ", period: " + period + ".]"
+        ;
     }
 }
