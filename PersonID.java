@@ -1,7 +1,7 @@
 public class PersonID {
     
     //Attributes
-    private String birthDate = ConstantValues2.NO_BIRTHDATE;
+    private String birthDate = ConstantValues.NO_BIRTHDATE;
 
     //Methods
     public String getBirthDate() {

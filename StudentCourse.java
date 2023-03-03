@@ -3,7 +3,7 @@ public class StudentCourse {
     //Attributes
 
     private Course course;
-    private int gradeNum = -1;
+    private int gradeNum;
     private int yearCompleted;
 
 
@@ -48,7 +48,7 @@ public class StudentCourse {
     }
 
     private String getGradeString() {
-        if (gradeNum == -1) {
+        if (gradeNum == 0) {
             return "\"Not graded\"";
         } else {
             return String.valueOf(gradeNum);

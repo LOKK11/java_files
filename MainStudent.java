@@ -38,5 +38,22 @@ public class MainStudent {
         System.out.println(student1.setPersonId("11111111-3334"));
         System.out.println(student1.setPersonId("121298-830A"));
 
+        Course course1 = new Course("Math", 92874, 'A', 1, 1, 5, true);
+        Course course2 = new Course("Math", 92874, 'A', 1, 1, 5, true);
+        StudentCourse studentCourse1 = new StudentCourse(course1, 1, 2021);
+        StudentCourse studentCourse2 = new StudentCourse(course2, 1, 2021);
+
+        Degree degree1 = new Degree();
+        degree1.setDegreeTitle("Only math");
+        degree1.setTitleOfThesis("I hate math");
+        StudentCourse[] courses = new StudentCourse[2];
+        courses[0] = studentCourse1;
+        courses[1] = studentCourse2;
+        degree1.addStudentCourses(courses);
+        System.out.println(degree1.getCreditsByBase('A'));
+        System.out.println(degree1.toString());
+        
+
+
     }
 }

@@ -3,7 +3,7 @@ public class Course {
     //Attributes
     private String name;
     private String courseCode;
-    private Character courseBase;
+    private char courseBase;
     private int courseType;
     private int period;
     private double credits;
@@ -15,7 +15,7 @@ public class Course {
     public Course(
         String name, 
         final int code, 
-        Character courseBase, 
+        char courseBase, 
         final int type, 
         final int period, 
         final double credits, 
@@ -67,7 +67,7 @@ public class Course {
         return courseCode;
     }
 
-    public void setCourseCode(final int courseCode, Character courseBase) {
+    public void setCourseCode(final int courseCode, char courseBase) {
         if (courseCode > 0 && courseCode < 1000000) {
             String courseCodeString = String.valueOf(courseCode); 
             switch (courseBase) {
@@ -87,7 +87,7 @@ public class Course {
         }
     }
 
-    public Character getCourseBase() {
+    public char getCourseBase() {
         return courseBase;
     }
 
@@ -106,7 +106,7 @@ public class Course {
     }
 
     private void setCredits(final double credits) {
-        if (credits > ConstantValues.MIN_CREDIT && credits <= ConstantValues.MAX_COURSE_CREDIT) {
+        if (credits > ConstantValues.MIN_CREDITS && credits <= ConstantValues.MAX_COURSE_CREDITS) {
             this.credits = credits;
         }
     }

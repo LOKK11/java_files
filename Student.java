@@ -9,8 +9,8 @@ public class Student {
     private String firstName = ConstantValues.NO_NAME;
     private String lastName = ConstantValues.NO_NAME;
     private int id;
-    private double bachelorCredits = ConstantValues.MIN_CREDIT;
-    private double masterCredits = ConstantValues.MIN_CREDIT;
+    private double bachelorCredits = ConstantValues.MIN_CREDITS;
+    private double masterCredits = ConstantValues.MIN_CREDITS;
     private String titleOfMastersThesis = ConstantValues.NO_TITLE;
     private String titleOfBachelorThesis = ConstantValues.NO_TITLE;
     private int startYear = ConstantValues.CURRENT_YEAR;
@@ -85,7 +85,7 @@ public class Student {
     public void setBachelorCredits(final double bachelorCredits) {
         //This method sets student's bachelor credits and changes the
         //missingBachelor attribute's value based on how many credits is given.
-        if (bachelorCredits >= ConstantValues.MIN_CREDIT && bachelorCredits <= ConstantValues.MAX_CREDITS) {
+        if (bachelorCredits >= ConstantValues.MIN_CREDITS && bachelorCredits <= ConstantValues.MAX_CREDITS) {
             this.bachelorCredits = bachelorCredits; 
             if (bachelorCredits >= ConstantValues.BACHELOR_CREDITS) {
                 missingBachelor = 
@@ -108,7 +108,7 @@ public class Student {
     public void setMasterCredits(final double masterCredits) {
         //This method sets student's master credits and changes the
         //missingMaster attribute's value based on how many credits is given.
-        if (masterCredits >= ConstantValues.MIN_CREDIT && masterCredits <= ConstantValues.MAX_CREDITS) {
+        if (masterCredits >= ConstantValues.MIN_CREDITS && masterCredits <= ConstantValues.MAX_CREDITS) {
             this.masterCredits = masterCredits;
             if (masterCredits >= ConstantValues.MASTER_CREDITS) {
                 missingMaster = 
