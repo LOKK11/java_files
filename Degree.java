@@ -19,15 +19,14 @@ public class Degree {
 
     public void addStudentCourses(StudentCourse[]courses) {
         for (StudentCourse course : courses) {
-            if (addStudentCourse(course)) {
-                myCourses[count] = course;
-                count++;
-            }
+            addStudentCourse(course);
         }
     }
 
-    private boolean addStudentCourse(StudentCourse course) {
+    public boolean addStudentCourse(StudentCourse course) {
         if (course != null && count < MAX_COURSES) {
+            myCourses[count] = course;
+            count++;
             return true;
         } else {
             return false;
@@ -56,9 +55,11 @@ public class Degree {
 
     public double getCreditsByBase(char base) {
         double totalCredits = 0.0;
-        for (StudentCourse studentCourse : myCourses) {
-            if (isCourseCompleted(studentCourse) && studentCourse.getCourse().getCourseBase() == base) {
-                totalCredits += studentCourse.getCourse().getCredits();
+        if (myCourses != null) {
+            for (StudentCourse studentCourse : myCourses) {
+                if (isCourseCompleted(studentCourse) && studentCourse.getCourse().getCourseBase() == base) {
+                    totalCredits += studentCourse.getCourse().getCredits();
+                }
             }
         }
         return totalCredits;
@@ -66,9 +67,11 @@ public class Degree {
 
     public double getCreditsByType(final int courseType) {
         double totalCredits = 0.0;
-        for (StudentCourse studentCourse : myCourses) {
-            if (isCourseCompleted(studentCourse) && studentCourse.getCourse().getCourseType() == courseType) {
-                totalCredits += studentCourse.getCourse().getCredits();
+        if (myCourses != null) {
+            for (StudentCourse studentCourse : myCourses) {
+                if (isCourseCompleted(studentCourse) && studentCourse.getCourse().getCourseType() == courseType) {
+                    totalCredits += studentCourse.getCourse().getCredits();
+                }
             }
         }
         return totalCredits;
@@ -76,8 +79,12 @@ public class Degree {
 
     public double getCredits() {
         double totalCredits = 0.0;
-        for (StudentCourse studentCourse : myCourses) {
-            totalCredits += studentCourse.getCourse().getCredits();
+        if (myCourses != null) {
+            for (StudentCourse studentCourse : myCourses) {
+                if (isCourseCompleted(studentCourse)) {
+                    totalCredits += studentCourse.getCourse().getCredits();
+                }
+            }
         }
         return totalCredits;        
     } 
@@ -91,9 +98,7 @@ public class Degree {
     }
 
     public void printCourses() {
-        for (StudentCourse studentCourse : myCourses) {
-            System.out.println(studentCourse);
-        }
+        System.out.println(toString());
     }
 
     public String toString() {

@@ -1,58 +1,81 @@
 public class MainStudent {
     public static void main(String[] args) {
-        Student student2 = new Student(null, null);
-        Student student3 = new Student("Mouse", "Minnie");
-        Student student4 = new Student();
         Student student1 = new Student();
-        student1.setLastName("Duck");
-        student1.setFirstName("Donald");
-        student1.setBachelorCredits(120);
-        student1.setMasterCredits(180);
-        student1.setTitleOfMasterThesis("Masters thesis title");
-        student1.setTitleOfBachelorThesis("Bachelor thesis title");
+
+        Course course1 = new Course("Programming 1", 811104, 'P', 1,
+        1, 5.0, true);
+        Course course2 = new Course("All kinds of basic studies", 112233, 'P', 1,
+        2, 45.0, true);
+        Course course3 = new Course("More basic studies", 223344, 'a', 1,
+        1, 50.5, true);
+        Course course4 = new Course("Even more basic studies", 556677, 'a', 0,
+        3, 50.0, true);
+        Course course5 = new Course("Final basic studies", 123123, 'A', 1,
+        4, 50.5, true);
+        Course course6 = new Course("Programming 2", 616161, 'A', 1,
+        3, 25.0, true);
+        Course course7 = new Course("All kinds of master studies", 717171, 'P', 0,
+        2, 45.0, true);
+        Course course8 = new Course("More master studies", 818181, 'A', 1,
+        1, 25.0, true);
+        Course course9 = new Course("Even more master studies ", 919191, 'S', 1,
+        3, 20.0, true);
+        Course course10 = new Course("Extra master studies", 666666, 'S', 0,
+        5, 8.0, false);
+        Course course11 = new Course("Final master studies", 888888, 'S', 1,
+        5, 18.0, false);
+
+        StudentCourse studentCourse1 = new StudentCourse(course1, 1, 2013);
+        StudentCourse studentCourse2 = new StudentCourse(course2, 1, 2014);
+        StudentCourse studentCourse3 = new StudentCourse(course3, 1, 2015);
+        StudentCourse studentCourse4 = new StudentCourse(course4, 4, 2016);
+        StudentCourse studentCourse5 = new StudentCourse(course5, 5, 2017);
+        StudentCourse studentCourse6 = new StudentCourse(course6, 1, 2018);
+        StudentCourse studentCourse7 = new StudentCourse(course7, 1, 2019);
+        StudentCourse studentCourse8 = new StudentCourse(course8, 2, 2020);
+        StudentCourse studentCourse9 = new StudentCourse(course9, 0, 2021);
+        StudentCourse studentCourse10 = new StudentCourse(course10, 'A', 2021);
+        StudentCourse studentCourse11 = new StudentCourse(course11, 'f', 2022);
+        
+        StudentCourse[] bachelorCourses = new StudentCourse[5];
+        bachelorCourses[0] = studentCourse1;
+        bachelorCourses[1] = studentCourse2;
+        bachelorCourses[2] = studentCourse3;
+        bachelorCourses[3] = studentCourse4;
+        bachelorCourses[4] = studentCourse5;
+
+        StudentCourse[] masterCourses = new StudentCourse[6];
+        masterCourses[0] = studentCourse6;
+        masterCourses[1] = studentCourse7;
+        masterCourses[2] = studentCourse8;
+        masterCourses[3] = studentCourse9;
+        masterCourses[4] = studentCourse10;
+        masterCourses[5] = studentCourse11;
+
+        student1.setDegreeTitle(0, "Bachelor of Science");
+        student1.setDegreeTitle(1, "Master of Science");
+        student1.setTitleOfThesis(0, "Bachelor thesis title");
+        student1.setTitleOfThesis(1, "Masters thesis title");
+        student1.addCourses(0, bachelorCourses);
+        student1.addCourses(1, masterCourses);
+
         student1.setStartYear(2001);
         student1.setGraduationYear(2020);
-        student2.setPersonId("170101A981N");
-        student2.setTitleOfBachelorThesis("A new exciting purpose of life");
-        student2.setBachelorCredits(65);
-        student2.setMasterCredits(22);
-        student3.setPersonId("111111-3334");
-        student3.setBachelorCredits(215);
-        student3.setMasterCredits(120);
-        student3.setTitleOfMasterThesis("Christmas - The most wonderful time of the year");
-        student3.setTitleOfBachelorThesis(null);
-        student3.setStartYear(2018);
-        student3.setGraduationYear(2022);
+        student1.setFirstName("Donald");
+        student1.setLastName("Duck");
+        
+        System.out.println(student1.toString());
+        System.out.println();
+
+        student1.setBirthDate("230498-054T");
+        student1.setTitleOfThesis(0, "Christmas - The most wonderful time of the year");
+        student1.setTitleOfThesis(1, "Dreaming of white christmas");
+        student1.printDegrees();
+    
 
         System.out.println(student1.toString());
         System.out.println();
-        System.out.println(student2.toString());
-        System.out.println();
-        System.out.println(student3.toString());
-        System.out.println();
-        System.out.println(student4.toString());
-        System.out.println();
 
-        System.out.println(student1.setPersonId("This is a string"));
-        System.out.println(student1.setPersonId("320187-1234"));
-        System.out.println(student1.setPersonId("11111111-3334"));
-        System.out.println(student1.setPersonId("121298-830A"));
-
-        Course course1 = new Course("Math", 92874, 'A', 1, 1, 5, true);
-        Course course2 = new Course("Math", 92874, 'A', 1, 1, 5, true);
-        StudentCourse studentCourse1 = new StudentCourse(course1, 1, 2021);
-        StudentCourse studentCourse2 = new StudentCourse(course2, 1, 2021);
-
-        Degree degree1 = new Degree();
-        degree1.setDegreeTitle("Only math");
-        degree1.setTitleOfThesis("I hate math");
-        StudentCourse[] courses = new StudentCourse[2];
-        courses[0] = studentCourse1;
-        courses[1] = studentCourse2;
-        degree1.addStudentCourses(courses);
-        System.out.println(degree1.getCreditsByBase('A'));
-        System.out.println(degree1.toString());
-        
 
 
     }

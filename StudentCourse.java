@@ -77,7 +77,7 @@ public class StudentCourse {
         if (gradeNum == ConstantValues.MIN_GRADE || gradeNum == ConstantValues.GRADE_FAILED) {
             return false;
         } else {
-            return false;
+            return true;
         }
     }
 

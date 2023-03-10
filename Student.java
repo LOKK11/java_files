@@ -9,32 +9,23 @@ public class Student {
     private String firstName = ConstantValues.NO_NAME;
     private String lastName = ConstantValues.NO_NAME;
     private int id;
-    private double bachelorCredits = ConstantValues.MIN_CREDITS;
-    private double masterCredits = ConstantValues.MIN_CREDITS;
-    private String titleOfMastersThesis = ConstantValues.NO_TITLE;
-    private String titleOfBachelorThesis = ConstantValues.NO_TITLE;
     private int startYear = ConstantValues.CURRENT_YEAR;
     private int graduationYear;
     private String birthDate = ConstantValues.NO_BIRTHDATE;
+    private int degreeCount = 3;
+    private Degree[] degrees;
+    private PersonID personId = new PersonID();
     //Attribute status is the string for toString that is defined by whether
     //the student has graduated or not.
     private String status;
 
-    //missingBachelor and missingMaster are the strings required for toString-method
-    private String missingBachelor = 
-    "Missing bachelor credits " + ConstantValues.BACHELOR_CREDITS +
-    " (" + bachelorCredits + "/" + ConstantValues.BACHELOR_CREDITS + ")"
-    ;
-
-    private String missingMaster = 
-    "Missing master credits " + ConstantValues.MASTER_CREDITS +
-    " (" + masterCredits + "/" + ConstantValues.MASTER_CREDITS + ")"
-    ;
-
 
     //Constructors
     public Student() { 
-        this.id = getRandomId();
+        id = getRandomId();
+        degrees = new Degree[degreeCount]; 
+        degrees[0] = new Degree();
+        degrees[1] = new Degree();
     }
 
     public Student(String lname, String fname) {
@@ -42,7 +33,8 @@ public class Student {
             firstName = fname;
             lastName = lname;
         }
-        this.id = getRandomId();
+        id = getRandomId();
+        degrees = new Degree[degreeCount];
     }
 
 
@@ -72,75 +64,71 @@ public class Student {
         return id; 
     }
 
-    public void setId(int id) {
+    public void setId(final int id) {
         if (id > 0 && id < 101) {
             this.id = id;
         } 
     }
 
-    public double getBachelorCredits() {
-        return bachelorCredits;
-    }
-
-    public void setBachelorCredits(final double bachelorCredits) {
-        //This method sets student's bachelor credits and changes the
-        //missingBachelor attribute's value based on how many credits is given.
-        if (bachelorCredits >= ConstantValues.MIN_CREDITS && bachelorCredits <= ConstantValues.MAX_CREDITS) {
-            this.bachelorCredits = bachelorCredits; 
-            if (bachelorCredits >= ConstantValues.BACHELOR_CREDITS) {
-                missingBachelor = 
-                    "All required bachelor credits completed (" + 
-                    bachelorCredits + "/" + ConstantValues.BACHELOR_CREDITS + ")"
-                    ;
-            } else {
-                missingBachelor = 
-                    "Missing bachelor credits " + (ConstantValues.BACHELOR_CREDITS - bachelorCredits) +
-                    " (" + bachelorCredits + "/" + ConstantValues.BACHELOR_CREDITS + ")"
-                    ;
-            }
+    public String getBachelorCreditsString(double bachelorCredits) {
+        //This method returns the string for bachelor credits needed in toString method.
+        if (bachelorCredits >= ConstantValues.BACHELOR_CREDITS) {
+            return
+                "Total bachelor credits completed (" + 
+                bachelorCredits + "/" + ConstantValues.BACHELOR_CREDITS + ")"
+                ;
+        } else {
+            return
+                "Missing bachelor credits " + (ConstantValues.BACHELOR_CREDITS - bachelorCredits) +
+                " (" + bachelorCredits + "/" + ConstantValues.BACHELOR_CREDITS + ")"
+                ;
         }
     }
 
     public double getMasterCredits() {
-        return masterCredits;
-    }
-
-    public void setMasterCredits(final double masterCredits) {
-        //This method sets student's master credits and changes the
-        //missingMaster attribute's value based on how many credits is given.
-        if (masterCredits >= ConstantValues.MIN_CREDITS && masterCredits <= ConstantValues.MAX_CREDITS) {
-            this.masterCredits = masterCredits;
-            if (masterCredits >= ConstantValues.MASTER_CREDITS) {
-                missingMaster = 
-                    "All required master credits completed (" + 
-                    masterCredits + "/" + ConstantValues.MASTER_CREDITS + ")"
-                    ;
-            } else {
-                missingMaster = 
-                    "Missing master credits " + (ConstantValues.MASTER_CREDITS - masterCredits) +
-                    " (" + masterCredits + "/" + ConstantValues.MASTER_CREDITS + ")"
-                    ;
-            }
+        if (degrees[1] != null) {
+            return degrees[1].getCredits();
+        } else {
+            return 0.0;
         }
     }
 
-    public String getTitleOfMasterThesis() {
-        return titleOfMastersThesis;
-    }
-
-    public void setTitleOfMasterThesis(String title) {
-        if (title != null) {
-            titleOfMastersThesis = title;
+    public double getBachelorCredits() {
+        if (degrees[0] != null) {
+            return degrees[0].getCredits();
+        } else {
+            return 0.0;
         }
     }
 
     public String getTitleOfBachelorThesis() {
-        return titleOfBachelorThesis;
+        if (degrees[0] != null) {
+            return degrees[0].getTitleOfThesis(); 
+        } else {
+            return ConstantValues.NO_TITLE;
+        }
     }
 
-    public void setTitleOfBachelorThesis(String title) {
-        if (title != null) {
-            titleOfBachelorThesis = title; 
+    public String getTitleOfMastersThesis() {
+        if (degrees[1] != null) {
+            return degrees[1].getTitleOfThesis(); 
+        } else {
+            return ConstantValues.NO_TITLE;
+        }
+    }
+
+    public String getMasterCreditsString(final double masterCredits) {
+        //This method returns the string for masters credits needed in toString method.
+        if (masterCredits >= ConstantValues.MASTER_CREDITS) {
+            return
+                "Total master's credits completed (" + 
+                masterCredits + "/" + ConstantValues.MASTER_CREDITS + ")"
+                ;
+        } else {
+            return 
+                "Missing master's credits " + (ConstantValues.MASTER_CREDITS - masterCredits) +
+                " (" + masterCredits + "/" + ConstantValues.MASTER_CREDITS + ")"
+                ;
         }
     }
 
@@ -167,7 +155,7 @@ public class Student {
                 return "Check graduation year";
             }
         } else {
-            return "Check the required studies";
+            return "Check amount of required credits";
         }
     }
 
@@ -184,8 +172,8 @@ public class Student {
     }
     
     private boolean canGraduate() {
-        if (bachelorCredits >= ConstantValues.BACHELOR_CREDITS && masterCredits >= ConstantValues.MASTER_CREDITS) {
-            if (titleOfBachelorThesis != ConstantValues.NO_TITLE && titleOfMastersThesis != ConstantValues.NO_TITLE) {
+        if (getBachelorCredits() >= ConstantValues.BACHELOR_CREDITS && getMasterCredits() >= ConstantValues.MASTER_CREDITS) {
+            if (getTitleOfBachelorThesis() != ConstantValues.NO_TITLE && getTitleOfMastersThesis() != ConstantValues.NO_TITLE) {
                 return true;
             } else {
                 return false;
@@ -193,6 +181,73 @@ public class Student {
         } else {
             return false;
         }
+    }
+
+    public void setDegreeTitle(final int i, String dName) {
+        if (0 <= i && i < degreeCount) {
+            degrees[i].setDegreeTitle(dName); 
+        }
+    }
+
+    public boolean addCourse(final int i, StudentCourse course) {
+        if (0 <= i && i < degreeCount) {
+            degrees[i].addStudentCourse(course); 
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int addCourses(final int i, StudentCourse[] courses) {
+        int count = 0;
+        for (StudentCourse course : courses) {
+            if (addCourse(i, course)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void printCourses() {
+        for (Degree degree : degrees) {
+            if (degree != null) {
+                for (StudentCourse course : degree.getCourses()) {
+                    if (course != null) {
+                        System.out.println(course.toString());
+                    }
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    public void printDegrees() {
+        for (Degree degree : degrees) {
+            if (degree != null) {
+                System.out.println(degree.toString());
+                System.out.println();
+            }
+        }
+    }
+
+    public void setTitleOfThesis(final int i, String title) {
+        if (0 <= i && i < degreeCount) {
+            degrees[i].setTitleOfThesis(title);
+        }
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public String setBirthDate(String personId) {
+        if (this.personId.setPersonId(personId) == "Ok") {
+            birthDate = this.personId.getBirthDate();
+            return birthDate;
+        } else {
+            return "No change";
+        }
+        
     }
 
     public int getStudyYears() {
@@ -208,111 +263,6 @@ public class Student {
         return randId;
     }
 
-    public String setPersonId(final String personId) {
-        if (checkPersonIdNumber(personId)) {
-            String days = personId.substring(0, 2);
-            String months = personId.substring(2, 4);
-            String years = personId.substring(4,6);
-            int century;
-            switch(personId.charAt(6)) {
-                case 'A':
-                    century = 20;
-                    break;
-                case '-':
-                    century = 19;
-                    break;
-                case '+':
-                    century = 18;
-                    break;
-                default:
-                    return ConstantValues.INVALID_BIRTHDAY;
-            }
-            String testBirthDate = days + "." + months + "." + century + years;
-            
-            if (checkBirthdate(testBirthDate)) {
-                if (checkValidCharacter(personId)) {
-                    birthDate = testBirthDate;
-                    return "Ok";
-                } else {
-                    return ConstantValues.INCORRECT_CHECKMARK;
-                }
-            } else {
-                return ConstantValues.INVALID_BIRTHDAY;
-            }
-        } else {
-            return ConstantValues.INVALID_BIRTHDAY;
-        }
-    }
-
-    private boolean checkPersonIdNumber(final String personId) {
-        char centChar = personId.charAt(6);
-        if (personId.length() == 11) {
-            if (centChar == '+' || centChar == '-' || centChar == 'A') {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    private boolean checkLeapYear(int year) {
-        if((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean checkValidCharacter(final String personId) {
-        String characters = "0123456789ABCDEFHJKLMNPRSTUVWXY";
-        String idNumber = personId.substring(0,6);
-        idNumber += personId.substring(7, 10);
-        int num = Integer.parseInt(idNumber);
-        int remaining = num % 31;
-
-        return characters.charAt(remaining) == personId.charAt(10);
-    }
-
-    private boolean checkBirthdate(final String date) {
-        try {
-            Integer.parseInt(date.substring(0, 2));
-            Integer.parseInt(date.substring(3, 5));
-            Integer.parseInt(date.substring(6, 10));
-        } catch (Exception e) {
-            return false;
-        }
-
-        int days = Integer.parseInt(date.substring(0, 2));
-        int months = Integer.parseInt(date.substring(3, 5));
-        int years = Integer.parseInt(date.substring(6, 10));
-        int yearsLastTwoDigits = Integer.parseInt(date.substring(8, 10));
-
-        if (days > 0 && months < 13 && months > 0 && yearsLastTwoDigits >= 0) {
-            if (days > 28 && months == 2 && !checkLeapYear(years)) {
-                return false;
-            } else if (days > 29 && checkLeapYear(years)) {
-                return false;
-            }
-            if (days > 30) {
-                switch(months) {
-                    case 4:
-                    case 6:
-                    case 9:
-                    case 11:
-                        return false;
-                }
-            if (days > 31) {
-                return false;
-            }
-            }
-        } else {
-            return false;
-        }
-        return true;
-    }
-
     public String toString() {
         hasGraduated();
         return 
@@ -321,10 +271,13 @@ public class Student {
             "\n\tDate of birth: " + birthDate +
             "\n\tStatus: " + status +
             "\n\tStartYear: " + startYear + " (Studies have lasted for " + getStudyYears() + " years)" +
-            "\n\tBachelorCredits: " + bachelorCredits + " ==> " + missingBachelor +
-            "\n\tTitleOfBachelorThesis: \"" + titleOfBachelorThesis + "\"" +
-            "\n\tMasterCredits: " + masterCredits + " ==> " + missingMaster + 
-            "\n\tTitleOfMastersThesis: \"" + titleOfMastersThesis + "\""
+            "\n\tTotal credits: " + (getBachelorCredits() + getMasterCredits()) +
+            "\n\tBachelorCredits: " + getBachelorCredits() + 
+            "\n\t\t" + getBachelorCreditsString(getBachelorCredits()) +
+            "\n\t\tTitle of BSc Thesis: \"" + getTitleOfBachelorThesis() + "\"" +
+            "\n\tMasterCredits: " + getMasterCredits() + 
+            "\n\t\t" + getMasterCreditsString(getMasterCredits()) + 
+            "\n\t\tTitleOfMastersThesis: \"" + getTitleOfMastersThesis() + "\""
             ;
         
     }

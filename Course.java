@@ -67,7 +67,7 @@ public class Course {
         return courseCode;
     }
 
-    public void setCourseCode(final int courseCode, char courseBase) {
+    public void setCourseCode(final int courseCode, Character courseBase) {
         if (courseCode > 0 && courseCode < 1000000) {
             String courseCodeString = String.valueOf(courseCode); 
             switch (courseBase) {
@@ -75,11 +75,23 @@ public class Course {
                     this.courseCode = courseCodeString += "A";
                     this.courseBase = 'A';
                     break;
+                case 'a':
+                    this.courseCode = courseCodeString += "A";
+                    this.courseBase = 'A';
+                    break;
                 case 'P':
                     this.courseCode = courseCodeString += "P";
                     this.courseBase = 'P';
                     break;
+                case 'p':
+                    this.courseCode = courseCodeString += "P";
+                    this.courseBase = 'P';
+                    break;
                 case 'S':
+                    this.courseCode = courseCodeString += "S";
+                    this.courseBase = 'S';
+                    break;
+                case 's':
                     this.courseCode = courseCodeString += "S";
                     this.courseBase = 'S';
                     break;
