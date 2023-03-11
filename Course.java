@@ -1,3 +1,5 @@
+//package dev.m3s.programming2.homework2;
+
 public class Course {
     
     //Attributes
@@ -70,12 +72,8 @@ public class Course {
     public void setCourseCode(final int courseCode, Character courseBase) {
         if (courseCode > 0 && courseCode < 1000000) {
             String courseCodeString = String.valueOf(courseCode); 
-            switch (courseBase) {
+            switch (Character.toUpperCase(courseBase)) {
                 case 'A':
-                    this.courseCode = courseCodeString += "A";
-                    this.courseBase = 'A';
-                    break;
-                case 'a':
                     this.courseCode = courseCodeString += "A";
                     this.courseBase = 'A';
                     break;
@@ -83,15 +81,7 @@ public class Course {
                     this.courseCode = courseCodeString += "P";
                     this.courseBase = 'P';
                     break;
-                case 'p':
-                    this.courseCode = courseCodeString += "P";
-                    this.courseBase = 'P';
-                    break;
                 case 'S':
-                    this.courseCode = courseCodeString += "S";
-                    this.courseBase = 'S';
-                    break;
-                case 's':
                     this.courseCode = courseCodeString += "S";
                     this.courseBase = 'S';
                     break;

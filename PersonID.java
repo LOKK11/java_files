@@ -1,3 +1,5 @@
+//package dev.m3s.programming2.homework2;
+
 public class PersonID {
     
     //Attributes
@@ -31,6 +33,7 @@ public class PersonID {
             
             if (checkBirthdate(testBirthDate)) {
                 if (checkValidCharacter(personId)) {
+                    System.out.println("_________________");
                     birthDate = testBirthDate;
                     return "Ok";
                 } else {

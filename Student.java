@@ -26,6 +26,7 @@ public class Student {
         degrees = new Degree[degreeCount]; 
         degrees[0] = new Degree();
         degrees[1] = new Degree();
+        degrees[2] = new Degree();
     }
 
     public Student(String lname, String fname) {

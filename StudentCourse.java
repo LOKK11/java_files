@@ -1,3 +1,5 @@
+//package dev.m3s.programming2.homework2;
+
 public class StudentCourse {
     
     //Attributes
@@ -50,8 +52,10 @@ public class StudentCourse {
     private String getGradeString() {
         if (gradeNum == 0) {
             return "\"Not graded\"";
-        } else {
+        } else if (course.isNumericGrade()) {
             return String.valueOf(gradeNum);
+        } else {
+            return String.valueOf((char) Character.toUpperCase(gradeNum));
         }
     }
 
@@ -62,7 +66,7 @@ public class StudentCourse {
             } else { 
                 return false;
             }
-        } else if (gradeNum == ConstantValues.GRADE_FAILED || gradeNum == ConstantValues.GRADE_ACCEPTED) {
+        } else if ((char) Character.toUpperCase(gradeNum) == ConstantValues.GRADE_FAILED || (char) Character.toUpperCase(gradeNum) == ConstantValues.GRADE_ACCEPTED) {
             if (!course.isNumericGrade()) {
                 return true;
             } else {
@@ -74,7 +78,7 @@ public class StudentCourse {
     }
 
     public boolean isPassed() {
-        if (gradeNum == ConstantValues.MIN_GRADE || gradeNum == ConstantValues.GRADE_FAILED) {
+        if (gradeNum == ConstantValues.MIN_GRADE || (char) Character.toUpperCase(gradeNum) == ConstantValues.GRADE_FAILED) {
             return false;
         } else {
             return true;

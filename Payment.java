@@ -1,4 +1,4 @@
-public class Payment {
+public abstract class Payment {
     
     double amount;
     static double total = 0;

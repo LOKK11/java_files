@@ -1,3 +1,5 @@
+//package dev.m3s.programming2.homework2;
+
 public class MainStudent {
     public static void main(String[] args) {
         Student student1 = new Student();
@@ -67,16 +69,30 @@ public class MainStudent {
         System.out.println(student1.toString());
         System.out.println();
 
-        student1.setBirthDate("230498-054T");
+        student1.setBirthDate("230498-045T");
         student1.setTitleOfThesis(0, "Christmas - The most wonderful time of the year");
         student1.setTitleOfThesis(1, "Dreaming of white christmas");
         student1.printDegrees();
-    
-
+        studentCourse9.setGrade(3);
+        
         System.out.println(student1.toString());
         System.out.println();
 
+        student1.printDegrees();
+        student1.printCourses();
 
+        studentCourse11.setGrade('X');
+        System.out.println(studentCourse11.toString());
+
+        studentCourse11.setGrade('a');
+        System.out.println(studentCourse11.toString());
+
+        studentCourse1.setGrade(6);
+        System.out.println(studentCourse1.toString());
+
+        
+        studentCourse1.setGrade(5);
+        System.out.println(studentCourse1.toString());
 
     }
 }
