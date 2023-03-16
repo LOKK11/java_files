@@ -97,7 +97,7 @@ public class StudentCourse {
 
     public String toString() {
         return
-        "[" + course.getCourseCode() + " (" + course.getCredits() + " cr), \"" +
+        "[" + course.getCourseCode() + " (" + course.getCredits() + "0 cr), \"" +
         course.getName() + "\". " + course.getCourseTypeString() + ", period: " +
         course.getPeriod() + ".] Year: " + yearCompleted + ", Grade: " + getGradeString() + ".]"
         ;

@@ -33,7 +33,6 @@ public class PersonID {
             
             if (checkBirthdate(testBirthDate)) {
                 if (checkValidCharacter(personId)) {
-                    System.out.println("_________________");
                     birthDate = testBirthDate;
                     return "Ok";
                 } else {
@@ -48,16 +47,18 @@ public class PersonID {
     }
 
     private boolean checkPersonIdNumber(final String personId) {
-        char centChar = personId.charAt(6);
-        if (personId.length() == 11) {
-            if (centChar == '+' || centChar == '-' || centChar == 'A') {
-                return true;
+        if (personId != null) {
+            char centChar = personId.charAt(6);
+            if (personId.length() == 11) {
+                if (centChar == '+' || centChar == '-' || centChar == 'A') {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }
-        } else {
-            return false;
-        }
+        } return false;
     }
 
     private boolean checkLeapYear(int year) {

@@ -18,8 +18,10 @@ public class Degree {
     }
 
     public void addStudentCourses(StudentCourse[]courses) {
-        for (StudentCourse course : courses) {
-            addStudentCourse(course);
+        if (courses != null) {
+            for (StudentCourse course : courses) {
+                addStudentCourse(course);
+            }
         }
     }
 

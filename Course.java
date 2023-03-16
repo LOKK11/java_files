@@ -3,7 +3,8 @@
 public class Course {
     
     //Attributes
-    private String name;
+    private String name = "";
+    private int courseNumber;
     private String courseCode;
     private char courseBase;
     private int courseType;
@@ -32,7 +33,12 @@ public class Course {
     }
 
     public Course(Course course) {
-
+        setName(course.getName());
+        setCourseCode(course.getCourseNumber(), getCourseBase());
+        setCourseType(course.getCourseType());
+        setPeriod(course.getPeriod());
+        setCredits(course.getCredits());
+        setNumericGrade(course.isNumericGrade());
     }
     
     //Methods
@@ -65,24 +71,29 @@ public class Course {
         }
     }
 
+    public int getCourseNumber() {
+        return courseNumber;
+    }
+
     public String getCourseCode() {
         return courseCode;
     }
 
     public void setCourseCode(final int courseCode, Character courseBase) {
         if (courseCode > 0 && courseCode < 1000000) {
+            this.courseNumber = courseCode;
             String courseCodeString = String.valueOf(courseCode); 
             switch (Character.toUpperCase(courseBase)) {
                 case 'A':
-                    this.courseCode = courseCodeString += "A";
+                    this.courseCode = courseCodeString + "A";
                     this.courseBase = 'A';
                     break;
                 case 'P':
-                    this.courseCode = courseCodeString += "P";
+                    this.courseCode = courseCodeString + "P";
                     this.courseBase = 'P';
                     break;
                 case 'S':
-                    this.courseCode = courseCodeString += "S";
+                    this.courseCode = courseCodeString + "S";
                     this.courseBase = 'S';
                     break;
             }
@@ -123,7 +134,7 @@ public class Course {
 
     public String toString() {
         return
-        "[" + courseCode + " ( " + credits + " cr), \"" + name +
+        "[" + courseCode + " ( " + credits + "0 cr), \"" + name +
         "\". " + getCourseTypeString() + ", period: " + period + ".]"
         ;
     }

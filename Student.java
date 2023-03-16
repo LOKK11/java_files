@@ -36,6 +36,9 @@ public class Student {
         }
         id = getRandomId();
         degrees = new Degree[degreeCount];
+        degrees[0] = new Degree();
+        degrees[1] = new Degree();
+        degrees[2] = new Degree();
     }
 
 
@@ -191,9 +194,12 @@ public class Student {
     }
 
     public boolean addCourse(final int i, StudentCourse course) {
-        if (0 <= i && i < degreeCount) {
-            degrees[i].addStudentCourse(course); 
-            return true;
+        if (0 <= i && i < degreeCount && course != null) {
+            if (degrees[i].addStudentCourse(course)) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -201,9 +207,11 @@ public class Student {
 
     public int addCourses(final int i, StudentCourse[] courses) {
         int count = 0;
-        for (StudentCourse course : courses) {
-            if (addCourse(i, course)) {
-                count++;
+        if (courses != null) {
+            for (StudentCourse course : courses) {
+                if (addCourse(i, course)) {
+                    count++;
+                }
             }
         }
         return count;
