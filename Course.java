@@ -34,7 +34,7 @@ public class Course {
 
     public Course(Course course) {
         setName(course.getName());
-        setCourseCode(course.getCourseNumber(), getCourseBase());
+        setCourseCode(course.getCourseNumber(), course.getCourseBase());
         setCourseType(course.getCourseType());
         setPeriod(course.getPeriod());
         setCredits(course.getCredits());
@@ -47,7 +47,7 @@ public class Course {
     }
 
     public void setName(String name) {
-        if (name != null || name != "") {
+        if (name != null && name != "") {
             this.name = name;
         }
         
