@@ -1,5 +1,3 @@
-//package dev.m3s.programming2.homework3;
-
 import java.time.Year;
 
 public class ConstantValues {
