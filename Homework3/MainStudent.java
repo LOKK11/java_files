@@ -2,7 +2,7 @@
 
 public class MainStudent {
     public static void main(String[] args) {
-        Student student1 = new Student();
+        Student student1 = new Student("Myllymäki", "Ossi");
 
         Course course1 = new Course("Programming 1", 811104, 'P', 1,
         1, 5.0, true);

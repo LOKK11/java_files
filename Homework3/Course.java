@@ -3,10 +3,10 @@
 public class Course {
     
     //Attributes
-    private String name = "";
+    private String name = ConstantValues.NO_TITLE;
     private int courseNumber;
-    private String courseCode;
-    private char courseBase;
+    private String courseCode = ConstantValues.NOT_AVAILABLE;
+    private char courseBase = ' ';
     private int courseType;
     private int period;
     private double credits;

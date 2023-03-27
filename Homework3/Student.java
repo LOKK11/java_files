@@ -2,7 +2,7 @@
 
 import java.util.Random;
 
-public class Student {
+public class Student extends Person {
     
     //Attributes 
     private Random rand = new Random(); 
@@ -21,19 +21,8 @@ public class Student {
 
 
     //Constructors
-    public Student() { 
-        id = getRandomId();
-        degrees = new Degree[degreeCount]; 
-        degrees[0] = new Degree();
-        degrees[1] = new Degree();
-        degrees[2] = new Degree();
-    }
-
     public Student(String lname, String fname) {
-        if (lname != null && fname != null) {
-            firstName = fname;
-            lastName = lname;
-        }
+        super(lname, fname);
         id = getRandomId();
         degrees = new Degree[degreeCount];
         degrees[0] = new Degree();
@@ -268,7 +257,7 @@ public class Student {
     }
     
     private int getRandomId() {
-        int randId = rand.nextInt(ConstantValues.MAX_ID) + 1;
+        int randId = rand.nextInt(ConstantValues.MAX_STUDENT_ID) + 1;
         return randId;
     }
 
@@ -290,4 +279,9 @@ public class Student {
             ;
         
     }
+
+    public String getIdString() {
+        return "Jesse";
+    }
+
 }
