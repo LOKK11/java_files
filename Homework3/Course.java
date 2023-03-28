@@ -1,12 +1,12 @@
-//package dev.m3s.programming2.homework2;
+//package dev.m3s.programming2.homework3;
 
 public class Course {
     
     //Attributes
-    private String name = ConstantValues.NO_TITLE;
+    private String name = "";
     private int courseNumber;
-    private String courseCode = ConstantValues.NOT_AVAILABLE;
-    private char courseBase = ' ';
+    private String courseCode;
+    private char courseBase;
     private int courseType;
     private int period;
     private double credits;
