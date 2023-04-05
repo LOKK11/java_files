@@ -1,4 +1,7 @@
-public class AssistantTeacher extends Employee implements Teacher, Payment {
+import java.util.ArrayList;
+import java.util.List;
+
+public class AssistantTeacher extends Employee implements Teacher {
 
     //Attributes 
         private List<DesignatedCourse> courses = new ArrayList<>();
@@ -18,11 +21,18 @@ public class AssistantTeacher extends Employee implements Teacher, Payment {
     }
 
     public void setCourses(List<DesignatedCourse> courses) {
-        this.courses = courses;
+        if (courses != null) {
+
+        }
     }
 
-    public void toString() {
+    public String toString() {
         return
-        "Teacher id: " + getEmployeeIdString() + empId
+        "Teacher id: " + getEmployeeIdString() + getIdString() +
+        "\n\tFirst name: " + getFirstName() + ", Last name: " + getLastName() +
+        "\n\tBirthdate: " + getBirthDate() +
+        "\n\tSalary: " + calculatePayment() +
+        "\n\tAssistant for courses:" + courses.toString();
+        ;
     }
 }
