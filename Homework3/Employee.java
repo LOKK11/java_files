@@ -39,7 +39,10 @@ public abstract class Employee extends Person implements Payment {
     }
 
     public double calculatePayment() {
-        
+        if (this.payment != null) {
+            return payment.calculatePayment();
+        } 
+        return 0.0;
     }
 
 }
