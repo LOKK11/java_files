@@ -16,7 +16,7 @@ public class HourBasedPayment implements Payment {
     }
 
     public double getHours() {
-        retrun hours;
+        return hours;
     }
 
     public void setHours(double hours) {

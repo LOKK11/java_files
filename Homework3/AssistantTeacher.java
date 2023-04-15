@@ -26,13 +26,25 @@ public class AssistantTeacher extends Employee implements Teacher {
         }
     }
 
+    public String coursesToString() {
+        String coursestring = "";
+        if (courses != null) {
+            for (DesignatedCourse course : courses) {
+                if (course != null) {
+                    coursestring = "\n\t" + course.toString();
+                }
+            }
+        }
+        return coursestring;
+    }
+
     public String toString() {
         return
         "Teacher id: " + getEmployeeIdString() + getIdString() +
         "\n\tFirst name: " + getFirstName() + ", Last name: " + getLastName() +
         "\n\tBirthdate: " + getBirthDate() +
         "\n\tSalary: " + calculatePayment() +
-        "\n\tAssistant for courses:" + courses.toString();
+        "\n\tAssistant for courses:" + coursesToString()
         ;
     }
 }

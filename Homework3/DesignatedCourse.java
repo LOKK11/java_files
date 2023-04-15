@@ -51,6 +51,6 @@ public class DesignatedCourse {
 
     public String toString() {
         return
-            course.toString() + ", year=" + year + "]"; 
+            "[course=" + course.toString() + ", year=" + year + "]"; 
     }
 }
