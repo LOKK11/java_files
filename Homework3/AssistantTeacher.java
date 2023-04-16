@@ -18,17 +18,13 @@ public class AssistantTeacher extends Employee implements Teacher {
         return "OY_ASSISTANT_";
     }
 
-    public String getCourses() {
-        return "LOKKI";
-    }
-
     public void setCourses(List<DesignatedCourse> courses) {
         if (courses != null) {
             this.courses = courses;
         }
     }
 
-    public String coursesToString() {
+    public String getCourses() {
         String coursestring = "";
         if (courses != null) {
             for (DesignatedCourse course : courses) {
@@ -46,7 +42,7 @@ public class AssistantTeacher extends Employee implements Teacher {
         "\n\tFirst name: " + getFirstName() + ", Last name: " + getLastName() +
         "\n\tBirthdate: " + getBirthDate() +
         "\n\tSalary: " + calculatePayment() +
-        "\n\tAssistant for courses:" + coursesToString() +
+        "\n\tAssistant for courses:" + getCourses() +
         "\n"
         ;
     }

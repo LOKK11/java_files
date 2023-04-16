@@ -1,12 +1,14 @@
 package dev.m3s.programming2.homework3;
 
+import dev.m3s.programming2.homework3.ConstantValues;
+
 public class Course {
     
     //Attributes
-    private String name = "";
+    private String name = ConstantValues.NO_TITLE;
     private int courseNumber;
-    private String courseCode;
-    private char courseBase;
+    private String courseCode = ConstantValues.NOT_AVAILABLE;
+    private char courseBase= ' ';
     private int courseType;
     private int period;
     private double credits;
@@ -134,7 +136,7 @@ public class Course {
 
     public String toString() {
         return
-        "[" + courseCode + " ( " + credits + "0 cr), \"" + name +
+        "[" + courseCode + " (" + credits + "0 cr), \"" + name +
         "\". " + getCourseTypeString() + ", period: " + period + ".]"
         ;
     }
