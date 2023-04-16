@@ -1,22 +1,19 @@
-//package dev.m3s.programming2.homework2;
+package dev.m3s.programming2.homework3;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.text.DecimalFormat;
 
 public class Student extends Person {
     
     //Attributes 
     private Random rand = new Random(); 
-    private String firstName = ConstantValues.NO_NAME;
-    private String lastName = ConstantValues.NO_NAME;
     private int id;
     private int startYear = ConstantValues.CURRENT_YEAR;
     private int graduationYear;
-    private String birthDate = ConstantValues.NO_BIRTHDATE;
     private int degreeCount = 3;
     private List<Degree> degrees = new ArrayList<>();
-    private PersonID personId = new PersonID();
     //Attribute status is the string for toString that is defined by whether
     //the student has graduated or not.
     private String status;
@@ -34,6 +31,14 @@ public class Student extends Person {
 
 
     //Methods 
+    private String getTwoDecimalString(double d) {
+        //Changes a double to a 2 decimal string.
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setMinimumFractionDigits(2);
+        df.setMaximumFractionDigits(2);
+        return df.format(d);
+    }
+
     public int getId() {
         return id; 
     }
@@ -68,7 +73,7 @@ public class Student extends Person {
                 degrees.get(0).getCreditsByType(ConstantValues.MANDATORY)) + "(" + 
                 degrees.get(0).getCreditsByType(ConstantValues.MANDATORY) + "/" + ConstantValues.BACHELOR_MANDATORY + ")";
         }
-        str += "\n\t\tGPA of Bachelor studies: " + degrees.get(0).getGPA(2).get(2);
+        str += "\n\t\tGPA of Bachelor studies: " + getTwoDecimalString(degrees.get(0).getGPA(2).get(2));
         return str;
     }
 
@@ -96,7 +101,7 @@ public class Student extends Person {
                 degrees.get(1).getCreditsByType(ConstantValues.MANDATORY)) + "(" + 
                 degrees.get(1).getCreditsByType(ConstantValues.MANDATORY) + "/" + ConstantValues.MASTER_MANDATORY + ")";
         }
-        str += "\n\t\tGPA of Master studies: " + degrees.get(1).getGPA(2).get(2);
+        str += "\n\t\tGPA of Master studies: " + getTwoDecimalString(degrees.get(1).getGPA(2).get(2));
         return str;
     }
 
@@ -201,7 +206,7 @@ public class Student extends Person {
         }
     }
 
-    public int addCourses(final int i, StudentCourse[] courses) {
+    public int addCourses(final int i, List<StudentCourse> courses) {
         int count = 0;
         if (courses != null) {
             for (StudentCourse course : courses) {
@@ -221,9 +226,9 @@ public class Student extends Person {
                         System.out.println(course.toString());
                     }
                 }
-                System.out.println();
             }
         }
+        System.out.println();
     }
 
     public void printDegrees() {
@@ -241,20 +246,6 @@ public class Student extends Person {
         }
     }
 
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public String setBirthDate(String personId) {
-        if (this.personId.setPersonId(personId) == "Ok") {
-            birthDate = this.personId.getBirthDate();
-            return birthDate;
-        } else {
-            return "No change";
-        }
-        
-    }
-
     public int getStudyYears() {
         if (hasGraduated()) {
             return graduationYear - startYear; 
@@ -268,22 +259,33 @@ public class Student extends Person {
         return randId;
     }
 
+    private String getStudyYearString() {
+        if (!hasGraduated()) {
+            return " (Studies have lasted for " + getStudyYears() + " years)";
+        } else {
+            return " (Studies lasted for " + getStudyYears() + " years)";
+        }
+    }
+
     public String toString() {
         hasGraduated();
+        String gpa = getTwoDecimalString((degrees.get(0).getGPA(2).get(0) + degrees.get(1).getGPA(2).get(0)) / 
+        (degrees.get(0).getGPA(2).get(1) + degrees.get(1).getGPA(2).get(1)));
         return 
             getIdString() +
-            "\n\tFirstName: " + firstName + ", LastName: " + lastName +
-            "\n\tDate of birth: " + birthDate +
+            "\n\tFirstName: " + getFirstName() + ", LastName: " + getLastName() +
+            "\n\tDate of birth: " + getBirthDate() +
             "\n\tStatus: " + status +
-            "\n\tStartYear: " + startYear + " (Studies have lasted for " + getStudyYears() + " years)" +
+            "\n\tStartYear: " + startYear + getStudyYearString() +
             "\n\tTotal credits: " + (getBachelorCredits() + getMasterCredits()) + 
-            "(GPA = " + (degrees.get(0).getGPA(2).get(2) + degrees.get(1).getGPA(2).get(2)) +
+            " (GPA = " + gpa + ")" +
             "\n\tBachelorCredits: " + getBachelorCredits() + 
             "\n\t\t" + getBachelorCreditsString() +
             "\n\t\tTitle of BSc Thesis: \"" + getTitleOfBachelorThesis() + "\"" +
             "\n\tMasterCredits: " + getMasterCredits() + 
             "\n\t\t" + getMasterCreditsString() + 
-            "\n\t\tTitleOfMastersThesis: \"" + getTitleOfMastersThesis() + "\""
+            "\n\t\tTitleOfMastersThesis: \"" + getTitleOfMastersThesis() + "\"" +
+            "\n"
             ;
         
     }

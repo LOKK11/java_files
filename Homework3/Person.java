@@ -1,3 +1,5 @@
+package dev.m3s.programming2.homework3;
+
 import java.util.Random;
 
 public abstract class Person {

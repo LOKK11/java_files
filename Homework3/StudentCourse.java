@@ -1,4 +1,4 @@
-//package dev.m3s.programming2.homework2;
+package dev.m3s.programming2.homework3;
 
 public class StudentCourse {
     

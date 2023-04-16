@@ -1,3 +1,5 @@
+package dev.m3s.programming2.homework3;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +48,8 @@ public class ResponsibleTeacher extends Employee implements Teacher {
         "\n\tFirst name: " + getFirstName() + ", Last name: " + getLastName() +
         "\n\tBirthdate: " + getBirthDate() +
         "\n\tSalary: " + calculatePayment() +
-        "\n\tTeacher for courses:" + getCourses()
+        "\n\tTeacher for courses:" + getCourses() +
+        "\n"
         ;
     }
 }

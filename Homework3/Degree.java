@@ -1,7 +1,7 @@
+package dev.m3s.programming2.homework3;
+
 import java.util.ArrayList;
 import java.util.List;
-
-//package dev.m3s.programming2.homework2;
 
 public class Degree {
 
@@ -118,14 +118,32 @@ public class Degree {
         if (type != ConstantValues.OPTIONAL && type != ConstantValues.MANDATORY && type != ConstantValues.ALL) {
             return values;
         }
-        sum = getCreditsByType(type); 
-        for (StudentCourse studentCourse : myCourses) {
-            if (isCourseCompleted(studentCourse) && studentCourse.getCourse().getCourseType() == type
-            && studentCourse.getCourse().isNumericGrade()) {
-                count++;
+        if (type == ConstantValues.ALL) {
+            int i = 0;
+            while (i < 2) { 
+                for (StudentCourse studentCourse : myCourses) {
+                    if (studentCourse.getCourse().getCourseType() == i
+                    && studentCourse.getCourse().isNumericGrade()) {
+                        sum += studentCourse.getGradeNum();
+                        count++;
+                    }
+                }
+                i++;
+            }
+        } else { 
+            for (StudentCourse studentCourse : myCourses) {
+                if (studentCourse.getCourse().getCourseType() == type
+                && studentCourse.getCourse().isNumericGrade()) {
+                    sum += studentCourse.getGradeNum();
+                    count++;
+                }
             }
         }
+        
         average = sum / count;
+        values.add(0, sum);
+        values.add(1, count);
+        values.add(2, average);
         return values;
     
     }
