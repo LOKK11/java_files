@@ -22,7 +22,7 @@ public class AssistantTeacher extends Employee implements Teacher {
 
     public void setCourses(List<DesignatedCourse> courses) {
         if (courses != null) {
-
+            this.courses = courses;
         }
     }
 
@@ -31,7 +31,7 @@ public class AssistantTeacher extends Employee implements Teacher {
         if (courses != null) {
             for (DesignatedCourse course : courses) {
                 if (course != null) {
-                    coursestring = "\n\t" + course.toString();
+                    coursestring += "\n\t" + course.toString();
                 }
             }
         }
@@ -40,7 +40,7 @@ public class AssistantTeacher extends Employee implements Teacher {
 
     public String toString() {
         return
-        "Teacher id: " + getEmployeeIdString() + getIdString() +
+        "Teacher id: " + getEmployeeIdString() + getId() +
         "\n\tFirst name: " + getFirstName() + ", Last name: " + getLastName() +
         "\n\tBirthdate: " + getBirthDate() +
         "\n\tSalary: " + calculatePayment() +

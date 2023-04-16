@@ -18,6 +18,11 @@ public abstract class Employee extends Person implements Payment {
         return empId;
     }
 
+    public String getId() {
+        int id = super.getRandomId(2001, 3000);
+        return String.valueOf(id);
+    }
+
     public int getStartYear() {
         return startYear;
     }
@@ -39,7 +44,7 @@ public abstract class Employee extends Person implements Payment {
     }
 
     public double calculatePayment() {
-        if (this.payment != null) {
+        if (payment != null) {
             return payment.calculatePayment();
         } 
         return 0.0;

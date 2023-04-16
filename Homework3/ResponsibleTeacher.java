@@ -27,7 +27,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
                     } else {
                         coursestring += "Teacher: ";
                     }
-                    coursestring = course.toString();
+                    coursestring += course.toString();
                 }
             }
         }
@@ -42,7 +42,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
 
     public String toString() {
         return
-        "Teacher id: " + getEmployeeIdString() + getIdString() +
+        "Teacher id: " + getEmployeeIdString() + getId() +
         "\n\tFirst name: " + getFirstName() + ", Last name: " + getLastName() +
         "\n\tBirthdate: " + getBirthDate() +
         "\n\tSalary: " + calculatePayment() +
