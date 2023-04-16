@@ -15,7 +15,7 @@ public class AssistantTeacher extends Employee implements Teacher {
 
     //Methods
     public String getEmployeeIdString() {
-        return "OY_ASSISTANT_";
+        return "OY_ASSISTANT_" + getId();
     }
 
     public void setCourses(List<DesignatedCourse> courses) {
@@ -38,10 +38,10 @@ public class AssistantTeacher extends Employee implements Teacher {
 
     public String toString() {
         return
-        "Teacher id: " + getEmployeeIdString() + getId() +
+        "Teacher id: " + getEmployeeIdString() +
         "\n\tFirst name: " + getFirstName() + ", Last name: " + getLastName() +
         "\n\tBirthdate: " + getBirthDate() +
-        "\n\tSalary: " + calculatePayment() +
+        "\n\tSalary: " + calculatePayment() + "0" +
         "\n\tAssistant for courses:" + getCourses() +
         "\n"
         ;
