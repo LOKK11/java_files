@@ -6,12 +6,13 @@ public abstract class Employee extends Person implements Payment {
     private String empId;
     private int startYear = ConstantValues.CURRENT_YEAR;
     private Payment payment;
+    private final int id;
 
     //Constructors
 
     public Employee(String lname, String fname) {
         super(lname, fname);
-        int id = super.getRandomId(2001, 3000);
+        id = super.getRandomId(2001, 3000);
         empId = "OY_" + id; 
     }
 
@@ -20,9 +21,8 @@ public abstract class Employee extends Person implements Payment {
         return empId;
     }
 
-    public String getId() {
-        int id = super.getRandomId(2001, 3000);
-        return String.valueOf(id);
+    public int getId() {
+        return id;
     }
 
     public int getStartYear() {
