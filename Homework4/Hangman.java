@@ -14,9 +14,11 @@ public class Hangman {
     private Scanner scanner = new Scanner(System.in);
     
     public Hangman(WordList words, int guesses) {
-        int rn;
-        rn = rand.nextInt(words.giveWords().size());
-        word = words.giveWords().get(rn);
+        int rn ;
+        if (words.giveWords().size() != 0) {
+            rn = rand.nextInt(words.giveWords().size());
+            word = words.giveWords().get(rn);
+        }
         this.guessesLeft = guesses;
         correctLetters = 0;
     }
@@ -28,18 +30,19 @@ public class Hangman {
             System.out.println("Guesses left: " + guessesLeft);
             System.out.println("Guessed letters: " + guesses);
             guess(readInput());
-            if (theEnd()){
-                System.out.println("Congratulations! You won!!!");
-                System.out.println("The hidden word was: \"" + word + "\"");
-                break;
-            }
-            if (guessesLeft == 0) {
-                System.out.println("Sorry, you lost!");
-                System.out.println("The hidden word was: \"" + word + "\"");
-                break;
+            if (theEnd()) {
+                if (correctLetters == word.length()){
+                    System.out.println("Congratulations! You won!!!");
+                    System.out.println("The hidden word was: \"" + word + "\"");
+                    break;
+                }
+                if (guessesLeft == 0) {
+                    System.out.println("Sorry, you lost!");
+                    System.out.println("The hidden word was: \"" + word + "\"");
+                    break;
+                }
             }
         }
-
     }
 
     public Character readInput() {
@@ -50,8 +53,6 @@ public class Hangman {
             if (guessLowerCase.length() == 1) {
                 Character guessCharacter = guessLowerCase.charAt(0);
                 return guessCharacter;
-            } else {
-                System.out.println("Incorrect input!");
             }
         }
     }
@@ -73,6 +74,13 @@ public class Hangman {
 
     public boolean guess(Character c) { 
         boolean correct = false;
+        if (letterList.size() == 0) {
+            int j = 0;
+            while (j < word.length()) {
+                letterList.add('*');
+                j++;
+            }
+        }
         if (!guesses.contains(c)) {
             guesses.add(c);
         }
@@ -85,7 +93,7 @@ public class Hangman {
                 }
             }
         }
-        if (correct != true) {
+        if (!correct) {
             guessesLeft -= 1;
         }
 
@@ -105,7 +113,7 @@ public class Hangman {
     }
 
     public boolean theEnd() {
-        if (correctLetters == word.length()) {
+        if (correctLetters >= word.length() || guessesLeft <= 0) {
             return true;
         } else {
             return false;

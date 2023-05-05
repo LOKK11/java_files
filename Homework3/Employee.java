@@ -13,7 +13,7 @@ public abstract class Employee extends Person implements Payment {
     public Employee(String lname, String fname) {
         super(lname, fname);
         id = super.getRandomId(2001, 3000);
-        empId = "OY_" + id; 
+        empId = getEmployeeIdString() + id; 
     }
 
     //Methods

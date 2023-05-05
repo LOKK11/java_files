@@ -11,19 +11,13 @@ public class WordList {
     private List<String> words = new ArrayList<>();
     
     public WordList(String fileName) throws FileNotFoundException, IOException {
-        try {
-            File file = new File(fileName);
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String st;
-            while ((st = br.readLine()) != null) {
-                words.add(st);
-            }
-            br.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("An error has occurred while reading the given file.");
+        File file = new File(fileName);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String st;
+        while ((st = br.readLine()) != null) {
+            words.add(st);
         }
+        br.close();
     }
 
     public List<String> giveWords() {
@@ -42,9 +36,7 @@ public class WordList {
                 correctWords.add(word);
             }
         }
-        if (correctWords.size() == 0) {
-            System.out.println("The file doesn't have any words of that length.");
-        } 
+        wordsOfLength.setWords(correctWords);
         return wordsOfLength;
     }
 
@@ -63,12 +55,7 @@ public class WordList {
             }
         }
         wordsWithCharacters.giveWords().removeAll(wrongWords);
-        if (wordsWithCharacters.giveWords().size() == 0) {
-            System.out.println("No words were found with given restraints.");
-            return wordsWithCharacters;
-        } else {
-            return wordsWithCharacters;
-        }
+        return wordsWithCharacters;
     }    
 
 }

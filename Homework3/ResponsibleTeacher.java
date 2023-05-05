@@ -15,7 +15,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
 
     //Methods
     public String getEmployeeIdString() {
-        return "OY_TEACHER_" + getId();
+        return "OY_TEACHER_";
     }
 
     public String getCourses() {
@@ -44,7 +44,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
 
     public String toString() {
         return
-        "Teacher id: " + getEmployeeIdString() +
+        "Teacher id: " + getIdString() +
         "\n\tFirst name: " + getFirstName() + ", Last name: " + getLastName() +
         "\n\tBirthdate: " + getBirthDate() +
         "\n\tSalary: " + calculatePayment() + "0" +
